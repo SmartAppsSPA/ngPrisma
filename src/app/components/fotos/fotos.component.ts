@@ -9,10 +9,15 @@ import { FirebaseListObservable } from "angularfire2/database";
 })
 export class FotosComponent implements OnInit {
 
-  imagenes: FirebaseListObservable<any[]>;
+  imagenes: any; //FirebaseListObservable<any[]>;
+  JSON: any;
 
   constructor(public _cargaImagenes:CargaImagenesService){
-    this.imagenes = this._cargaImagenes.listaUltimasImagenes(15);
+    this.JSON = JSON;
+    this._cargaImagenes.listaUltimasImagenes(15).then(data => {
+    	this.imagenes = data;
+    });
+
   }
 
   ngOnInit() {

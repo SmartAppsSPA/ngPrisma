@@ -14,21 +14,50 @@ export class CargaImagenesService {
 
   }
 
-  listaUltimasImagenes( numeroImagenes:number ):FirebaseListObservable<any[]>{
-    return this.afDB.list(`/${this.CARPETA_IMAGENES}`,{
+  /*listaUltimasImagenes( numeroImagenes:number ):FirebaseListObservable<any[]>{
+    return this.afDB.list(this.CARPETA_IMAGENES,{
       query:{
         limitToLast: numeroImagenes
       }
     });
+  }*/
+
+  listaUltimasImagenes( numeroImagenes:number ) {
+
+    return new Promise(resolve => {
+      this.afDB.list(this.CARPETA_IMAGENES,{
+        query:{
+          limitToLast: numeroImagenes
+        }
+      }).subscribe(data => {
+        let imagenes = [];
+
+        data.forEach(function(e, i) {
+          let img = [];
+          
+          for (let j in e) {
+            img.push(e[j]);
+          }
+
+          imagenes.push({
+            key: e.$key,
+            img: img
+          });
+        });
+
+        resolve(imagenes);
+      });
+    })
   }
-  cargar_imagenes_firebase(archivos:FileItem[]){
+
+  cargar_imagenes_firebase(archivos:FileItem[], code: any){
     console.log(archivos);
     let storageRef = firebase.storage().ref();
 
     for(let item of  archivos){
       item.estadoSubiendo = true;
 
-      let uploadTask:firebase.storage.UploadTask = storageRef.child(`${this.CARPETA_IMAGENES}/${item.nombreArchivo}`).put(item.archivo);
+      let uploadTask:firebase.storage.UploadTask = storageRef.child(this.CARPETA_IMAGENES + '/' + item.nombreArchivo).put(item.archivo);
 
       uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
         (snapshot) => item.progreso = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100,
@@ -36,12 +65,12 @@ export class CargaImagenesService {
         () =>{
           item.url = uploadTask.snapshot.downloadURL;
           item.estadoSubiendo = false;
-          this.guardarImagen({nombre: item.nombreArchivo, url: item.url});
+          this.guardarImagen({nombre: item.nombreArchivo, url: item.url}, code);
         }
       )
     }
   }
-  private guardarImagen(imagen:any){
-    this.afDB.list(`${this.CARPETA_IMAGENES}`).push(imagen);
+  private guardarImagen(imagen:any, code){
+    this.afDB.list(this.CARPETA_IMAGENES + '/' + code).push(imagen);
   }
 }

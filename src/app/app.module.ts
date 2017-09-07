@@ -16,6 +16,10 @@ import { CargaImagenesService } from './services/carga-imagenes.service';
 //directives
 import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
 
+//Para inputs
+import { FormsModule } from '@angular/forms';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +30,7 @@ import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
   imports: [
     BrowserModule,
     app_routing,
+    FormsModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireDatabaseModule
   ],
