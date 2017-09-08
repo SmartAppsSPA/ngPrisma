@@ -14,14 +14,6 @@ export class CargaImagenesService {
 
   }
 
-  /*listaUltimasImagenes( numeroImagenes:number ):FirebaseListObservable<any[]>{
-    return this.afDB.list(this.CARPETA_IMAGENES,{
-      query:{
-        limitToLast: numeroImagenes
-      }
-    });
-  }*/
-
   listaUltimasImagenes( numeroImagenes:number ) {
 
     return new Promise(resolve => {
@@ -37,7 +29,7 @@ export class CargaImagenesService {
           let howmany = 0;
           
           for (let j in e) {
-            if (++howmany < 2) {
+            if (++howmany < 6) {
               img.push(e[j]);              
             }
           }

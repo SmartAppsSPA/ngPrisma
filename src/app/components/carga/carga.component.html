@@ -14,7 +14,7 @@
 
   <div class="col-md-8" style="margin-bottom:40px">
     <h3>Cargar Archivos</h3>
-    <input [(ngModel)]="code" />
+    <input [(ngModel)]="code" placeholder="Ingrese el código"/>
     <button type="button" class="btn btn-success"
             (click)="cargarImagenesFirebase()"
             [disabled]="archivos.length == 0 || !permiteCargar">
@@ -25,7 +25,6 @@
       Limpiar Archivos
     </button>
 
-    <input [(ngModel)]="code" placeholder="Ingrese el código"/>
     <table class="table">
       <thead class="thead-inverse">
         <tr>

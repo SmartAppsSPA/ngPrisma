@@ -14,7 +14,7 @@ export class FotosComponent implements OnInit {
 
   constructor(public _cargaImagenes:CargaImagenesService){
     this.JSON = JSON;
-    this._cargaImagenes.listaUltimasImagenes(15).then(data => {
+    this._cargaImagenes.listaUltimasImagenes(5).then(data => {
     	this.imagenes = data;
     });
 

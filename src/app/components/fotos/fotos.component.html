@@ -1,29 +1,13 @@
 <div class="row">
-
   <div class="card-columns">
-
-    <!-- <div class="card" *ngFor="let imagen of imagenes | async">
-      <img [src]="imagen.url" class="card-img-top img-fluid">
-      <div class="card-block">
-        <h4 class="card-title">{{imagen.nombre}}</h4>
-      </div>
-    </div> -->
-
     <div class="card" *ngFor="let c of imagenes">
-    	<!-- {{ JSON.stringify(c) }} -->
     	<div *ngFor="let imagen of c.img">
         <a data-toggle="modal" data-target="#exampleModalLong" [href]="imagen.url">
-		      <img [src]="imagen.url" class="card-img-top img-fluid" alt="Prisma Foto Arte, Roca 1012 3er Piso.">
-		      <div class="card-block">
-            <h4 class="card-title">{{imagen.nombre}}</h4>
-		      </div>
+		      <img [src]="imagen.url" class="img-fluid" alt="Prisma Foto Arte, Roca 1012 3er Piso.">
         </a>
     	</div>
-
     </div>
-
   </div>
-
 </div>
 
 <!-- Ventana Modal -->
