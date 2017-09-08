@@ -17,7 +17,7 @@
     <input [(ngModel)]="code" placeholder="Ingrese el código"/>
     <button type="button" class="btn btn-success"
             (click)="cargarImagenesFirebase()"
-            [disabled]="archivos.length == 0 || !permiteCargar">
+            [disabled]="archivos.length == 0 || !permiteCargar || code == ''">
       Cargar a firebase
     </button>
     <button type="button" class="btn btn-danger"
