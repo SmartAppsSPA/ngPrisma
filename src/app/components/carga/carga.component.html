@@ -14,6 +14,7 @@
 
   <div class="col-md-8" style="margin-bottom:40px">
     <h3>Cargar Archivos</h3>
+    <input [(ngModel)]="code" />
     <button type="button" class="btn btn-success"
             (click)="cargarImagenesFirebase()"
             [disabled]="archivos.length == 0 || !permiteCargar">
@@ -23,9 +24,6 @@
             (click)="limpiarArchivos()">
       Limpiar Archivos
     </button>
-
-    <input [(ngModel)]="code" />{{ code }}
-    <div ngModel="code">Código: {{ code }}</div>
 
 
     <table class="table">
