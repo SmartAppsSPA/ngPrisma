@@ -34,9 +34,12 @@ export class CargaImagenesService {
 
         data.forEach(function(e, i) {
           let img = [];
+          let howmany = 0;
           
           for (let j in e) {
-            img.push(e[j]);
+            if (++howmany < 2) {
+              img.push(e[j]);              
+            }
           }
 
           imagenes.push({
