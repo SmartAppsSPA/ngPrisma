@@ -11,6 +11,7 @@ export class FotosComponent implements OnInit {
 
   imagenes: any; //FirebaseListObservable<any[]>;
   JSON: any;
+  modalimg: any;
 
   constructor(public _cargaImagenes:CargaImagenesService){
     this.JSON = JSON;
@@ -21,6 +22,10 @@ export class FotosComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  loadModalImage(url){
+    this.modalimg = url;
   }
 
 }
