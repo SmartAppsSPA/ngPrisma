@@ -39,7 +39,7 @@ export class CargaImagenesService {
           let howmany = 0;
           
           for (let j in e) {
-            if (++howmany < 15) {
+            if (++howmany < 6) {
               img.push(e[j]);              
             }
           }
