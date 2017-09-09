@@ -6,6 +6,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AppComponent } from './app.component';
 import { CargaComponent } from './components/carga/carga.component';
 import { FotosComponent } from './components/fotos/fotos.component';
+import { CodeComponent } from './components/code/code.component';
 
 //Rutas
 import { app_routing } from './app.routes';
@@ -25,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     CargaComponent,
     FotosComponent,
+    CodeComponent,
     NgDropFilesDirective
   ],
   imports: [

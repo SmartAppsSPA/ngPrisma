@@ -14,6 +14,16 @@ export class CargaImagenesService {
 
   }
 
+  random_string = function(q) {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNPQRSTUVWXYZ123456789";
+
+    for (var i = 0; i < q; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+  }
+
   listaUltimasImagenes( numeroImagenes:number ) {
 
     return new Promise(resolve => {
@@ -29,7 +39,7 @@ export class CargaImagenesService {
           let howmany = 0;
           
           for (let j in e) {
-            if (++howmany < 6) {
+            if (++howmany < 15) {
               img.push(e[j]);              
             }
           }
@@ -45,14 +55,31 @@ export class CargaImagenesService {
     })
   }
 
+  loadByCode( code:any ) {
+
+    return new Promise(resolve => {
+      this.afDB.list(this.CARPETA_IMAGENES + '/' + code).subscribe(data => {
+        let imagenes = [];
+
+        data.forEach(function(e, i) {
+          imagenes.push(e);
+        });
+
+        resolve(imagenes);
+      });
+    })
+  }
+
   cargar_imagenes_firebase(archivos:FileItem[], code: any){
     console.log(archivos);
     let storageRef = firebase.storage().ref();
 
-    for(let item of  archivos){
+    for(let item of archivos){
       item.estadoSubiendo = true;
 
-      let uploadTask:firebase.storage.UploadTask = storageRef.child(this.CARPETA_IMAGENES + '/' + item.nombreArchivo).put(item.archivo);
+      let random_name = this.random_string(12) + '.jpg';
+
+      let uploadTask:firebase.storage.UploadTask = storageRef.child(this.CARPETA_IMAGENES + '/' + random_name).put(item.archivo);
 
       uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
         (snapshot) => item.progreso = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100,
@@ -60,7 +87,7 @@ export class CargaImagenesService {
         () =>{
           item.url = uploadTask.snapshot.downloadURL;
           item.estadoSubiendo = false;
-          this.guardarImagen({nombre: item.nombreArchivo, url: item.url}, code);
+          this.guardarImagen({nombre: random_name, url: item.url}, code);
         }
       )
     }

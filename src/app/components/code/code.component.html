@@ -1,0 +1,15 @@
+<input [(ngModel)]="code" /><button (click)="loadImages()">Cargar</button>
+
+    	<div class="card" *ngFor="let imagen of imagenes" >
+        <a data-toggle="modal" (click)=loadModalImage(imagen.url) data-target="#exampleModalLong" [href]="imagen.url">
+		      <img [src]="imagen.url" class="" width="100%" alt="Prisma Foto Arte, Roca 1012 3er Piso.">
+        </a>
+    	</div>
+
+
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" modal-lg  style="max-width: 60%;">
+      <img [src]="modalimg"  class="card-img-top img-fluid" alt="Prisma Foto Arte, Roca 1012 3er Piso.">
+  </div>
+</div>
