@@ -22,4 +22,8 @@
 	color: green
 }
 
+ngx-qrcode2 .qrcode img {
+	width: 100%;
+}
+
 
