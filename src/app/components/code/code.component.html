@@ -2,10 +2,12 @@
   <input [(ngModel)]="code" /><button (click)="loadImages()">Cargar</button>
 </div>
     	
-<div class="card" *ngFor="let imagen of imagenes" >
-  <a data-toggle="modal" (click)=loadModalImage(imagen.url) data-target="#exampleModalLong" [href]="imagen.url">
-    <img [src]="imagen.url" class="" width="100%" alt="Prisma Foto Arte, Roca 1012 3er Piso.">
-  </a>
+<div class="card-columns">
+	<div class="card" *ngFor="let imagen of imagenes" >
+	  <a data-toggle="modal" (click)=loadModalImage(imagen.url) data-target="#exampleModalLong" [href]="imagen.url">
+	    <img [src]="imagen.url" class="" width="100%" alt="Prisma Foto Arte, Roca 1012 3er Piso.">
+	  </a>
+	</div>
 </div>
 
 
