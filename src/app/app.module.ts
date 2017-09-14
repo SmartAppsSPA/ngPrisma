@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { CargaComponent } from './components/carga/carga.component';
 import { FotosComponent } from './components/fotos/fotos.component';
 import { CodeComponent } from './components/code/code.component';
-import { QrComponent } from './components/qr/qr.component';
 
 //Rutas
 import { app_routing } from './app.routes';
@@ -17,12 +16,9 @@ import { FIREBASE_CONFIG } from './config/firebase.config';
 import { CargaImagenesService } from './services/carga-imagenes.service';
 //directives
 import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
-
 //Para inputs
 import { FormsModule } from '@angular/forms';
 
-//QR
-import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 
 @NgModule({
@@ -31,7 +27,6 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     CargaComponent,
     FotosComponent,
     CodeComponent,
-    QrComponent,
     NgDropFilesDirective
   ],
   imports: [
@@ -39,8 +34,7 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     app_routing,
     FormsModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireDatabaseModule,
-    NgxQRCodeModule
+    AngularFireDatabaseModule
   ],
   providers: [
     CargaImagenesService
