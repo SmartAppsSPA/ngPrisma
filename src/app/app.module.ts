@@ -19,7 +19,10 @@ import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
 //Para inputs
 import { FormsModule } from '@angular/forms';
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b202b664bf7663c712a38966e541e852b52636c1
 
 @NgModule({
   declarations: [
